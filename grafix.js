@@ -515,7 +515,7 @@ export function initWorld() {
         worldProps.clickX = e.offsetX;
         worldProps.clickY = e.offsetY;
         // Debug
-        console.log(worldProps.clickX, worldProps.clickY);
+        // console.log(worldProps.clickX, worldProps.clickY);
     });
 
     // window
