@@ -479,3 +479,48 @@ export function countFrames() {
         timeKeeper.frameCount = 0;
     }
 }
+
+/**
+ * World
+ */
+
+export const worldProps = {
+    canvas: '',
+    ctx: '',
+    centerX: 0,
+    centerY: 0,
+    clickX: 0,
+    clickY: 0
+};
+
+export function initWorld() {
+    // canvas and context
+
+    worldProps.canvas = document.getElementById('canvas');
+    worldProps.canvas.setAttribute('width', innerWidth);
+    worldProps.canvas.setAttribute('height', innerHeight);
+    worldProps.ctx = worldProps.canvas.getContext('2d');
+
+    // locations
+
+    worldProps.centerX = worldProps.canvas.width / 2;
+    worldProps.centerY = worldProps.canvas.height / 2;
+
+    // mouse click
+
+    worldProps.clickX = worldProps.centerX;
+    worldProps.clickY = worldProps.centerY;
+
+    canvas.addEventListener('click', (e) => {
+        worldProps.clickX = e.offsetX;
+        worldProps.clickY = e.offsetY;
+        // Debug
+        console.log(worldProps.clickX, worldProps.clickY);
+    });
+
+    // window
+
+    addEventListener("resize", () => {
+        location.reload();
+    });
+}
