@@ -480,18 +480,31 @@ export function countFrames() {
     }
 }
 
-/**
- * World
- */
-
 export const worldProps = {
-    canvas: '',
-    ctx: '',
+    canvas: {},
+    ctx: {},
     centerX: 0,
     centerY: 0,
     clickX: 0,
     clickY: 0
 };
+
+class GameWorld {
+    constructor(canvas, ctx) {
+        this.canvas = canvas;
+        this.ctx = ctx;
+        this.clickX = 0;
+        this.clickY = 0; 
+    }
+
+    centerX() {
+        return canvas.width / 2;
+    }
+
+    centerY() {
+        return canvas.height / 2;
+    }
+}
 
 export function initWorld() {
     // canvas and context
