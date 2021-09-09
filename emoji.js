@@ -137,7 +137,7 @@ export const emojiTable = [
     {codePoint: 0x1F336, category: 'b', description: 'hot pepper', color: 'red'},
     {codePoint: 0x1F344, category: 'b', description: 'mushroom',   color: 'red'},
 
-    {codePoint: 0x1FAD0, category: 'b', description: 'grapes',      color: 'blue'},
+    {codePoint: 0x1F46E, category: 'b', description: 'police',      color: 'blue'},
     {codePoint: 0x1FAD0, category: 'b', description: 'blueberries', color: 'blue'},
     {codePoint: 0x1F346, category: 'b', description: 'eggplant',    color: 'blue'},
     {codePoint: 0x1F9CA, category: 'b', description: 'ice',         color: 'blue'},
