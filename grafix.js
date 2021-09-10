@@ -491,9 +491,9 @@ export const worldProps = {
     requestID: 0
 };
 
-class GameWorld {
-    constructor() {
-        this.canvas = candocument.getElementById('canvas');
+export class GameWorld {
+    constructor(draw) {
+        this.canvas = document.getElementById('canvas');
         this.canvas.setAttribute('width', innerWidth);
         this.canvas.setAttribute('height', innerHeight);    
         this.ctx = canvas.getContext('2d');
@@ -501,22 +501,23 @@ class GameWorld {
         this.clickY = 0;
         this.state = 'not started';
         this.requestID = 0;
+        this.draw = draw;
 
         canvas.addEventListener('click', (e) => {
-            worldProps.clickX = e.offsetX;
-            worldProps.clickY = e.offsetY;
+            this.clickX = e.offsetX;
+            this.clickY = e.offsetY;
 
             if (this.state == 'running') {
-                pause();
+                this.pause();
             } else if (this.state == 'paused') {
-                unpause();
+                this.unpause();
             }
-            console.log(this.clickX, this.clickY, state);    
+            console.log(this);    
         });
 
         addEventListener("resize", () => {
             location.reload();
-        });    
+        });
     }
 
     centerX() {
@@ -525,6 +526,21 @@ class GameWorld {
 
     centerY() {
         return canvas.height / 2;
+    }
+
+    start() {
+        this.state = 'running';
+        this.requestID = requestAnimationFrame(this.draw)
+    }
+    
+    pause() {
+        this.state = 'paused';
+        cancelAnimationFrame(this.requestID);
+    }
+    
+    unpause() {
+        this.state = 'running';
+        this.requestID = requestAnimationFrame(this.draw);
     }
 }
 
