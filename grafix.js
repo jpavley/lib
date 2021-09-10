@@ -486,15 +486,37 @@ export const worldProps = {
     centerX: 0,
     centerY: 0,
     clickX: 0,
-    clickY: 0
+    clickY: 0,
+    state: 'not started',
+    requestID: 0
 };
 
 class GameWorld {
-    constructor(canvas, ctx) {
-        this.canvas = canvas;
-        this.ctx = ctx;
+    constructor() {
+        this.canvas = candocument.getElementById('canvas');
+        this.canvas.setAttribute('width', innerWidth);
+        this.canvas.setAttribute('height', innerHeight);    
+        this.ctx = canvas.getContext('2d');
         this.clickX = 0;
-        this.clickY = 0; 
+        this.clickY = 0;
+        this.state = 'not started';
+        this.requestID = 0;
+
+        canvas.addEventListener('click', (e) => {
+            worldProps.clickX = e.offsetX;
+            worldProps.clickY = e.offsetY;
+
+            if (this.state == 'running') {
+                pause();
+            } else if (this.state == 'paused') {
+                unpause();
+            }
+            console.log(this.clickX, this.clickY, state);    
+        });
+
+        addEventListener("resize", () => {
+            location.reload();
+        });    
     }
 
     centerX() {
